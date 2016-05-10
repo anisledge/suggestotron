@@ -1,0 +1,36 @@
+<section id="index">
+<p id="notice"><%= notice %></p>
+
+<h1>Topic Rankings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th >Title</th>
+      <th colspan="2">Likes</th>
+      <th colspan="2">Dislikes</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% topics = @topics.sort_by do |topic| %>
+      <% (topic.votes.count - topic.downvotes.count) %>
+    <% end %>
+    <% topics.reverse.each do |topic| %>
+      <tr>
+        <td><%= link_to topic.title, topic %></td>
+        <td><%= pluralize(topic.votes.count, "like") %></td>
+        <td><%= button_to '+1', upvote_topic_path(topic), method: :post%></td>
+        <td><%= pluralize(topic.downvotes.count, "dislike") %></td>
+        <td><%= button_to '-1', downvote_topic_path(topic), method: :post %></td>
+        <td><%= link_to 'Delete', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Topic', new_topic_path %><br/>
+<%= link_to "About", about_path %>
+</section>

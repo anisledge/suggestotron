@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyTitle
+  description: MyDescription
+
+two:
+  title: TwoTitle
+  description: TwoDescription
+
+most_votes: 
+  title: MostVotes
+  description: Has the most votes
